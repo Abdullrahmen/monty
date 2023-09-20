@@ -1,6 +1,6 @@
 #ifndef MONTY_H_
 #define MONTY_H_
-#define NUMBER_OF_INSTRUCTIONS 6
+#define NUMBER_OF_INSTRUCTIONS 14
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -59,6 +59,20 @@ void i_pint(stack_t **stack, unsigned int line_number);
 void i_pop(stack_t **stack, unsigned int line_number);
 void i_swap(stack_t **stack, unsigned int line_number);
 void i_add(stack_t **stack, unsigned int line_number);
+
+/* instructions2.c */
 void i_nop(stack_t **stack, unsigned int line_number);
+void i_sub(stack_t **stack, unsigned int line_number);
+void i_div(stack_t **stack, unsigned int line_number);
+void i_mul(stack_t **stack, unsigned int line_number);
+void i_mod(stack_t **stack, unsigned int line_number);
+
+/* instructions3.c */
+void i_pchar(stack_t **stack, unsigned int line_number);
+void i_pstr(stack_t **stack, unsigned int line_number);
+void i_rotl(stack_t **stack, unsigned int line_number);
+void i_rotr(stack_t **stack, unsigned int line_number);
+
+
 #endif /* MONTY_H_ */
 

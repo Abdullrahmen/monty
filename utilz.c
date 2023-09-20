@@ -52,6 +52,22 @@ void init_instructions(instruction_t *instructions)
 	instructions[4].f = i_add;
 	instructions[5].opcode = strdup("nop");
 	instructions[5].f = i_nop;
+	instructions[6].opcode = strdup("sub");
+	instructions[6].f = i_sub;	
+	instructions[7].opcode = strdup("div");
+	instructions[7].f = i_div;
+	instructions[8].opcode = strdup("mul");
+	instructions[8].f = i_mul;
+	instructions[9].opcode = strdup("mod");
+	instructions[9].f = i_mod;
+	instructions[10].opcode = strdup("pchar");
+	instructions[10].f = i_pchar;
+	instructions[11].opcode = strdup("pstr");
+	instructions[11].f = i_pstr;
+	instructions[12].opcode = strdup("rotl");
+	instructions[12].f = i_rotl;
+	instructions[13].opcode = strdup("rotr");
+	instructions[13].f = i_rotr;
 }
 
 /**
