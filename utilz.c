@@ -68,6 +68,10 @@ void init_instructions(instruction_t *instructions)
 	instructions[12].f = i_rotl;
 	instructions[13].opcode = strdup("rotr");
 	instructions[13].f = i_rotr;
+	instructions[14].opcode = strdup("queue");
+	instructions[14].f = i_queue;
+	instructions[15].opcode = strdup("stack");
+	instructions[15].f = i_stack;
 }
 
 /**

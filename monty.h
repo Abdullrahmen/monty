@@ -1,6 +1,6 @@
 #ifndef MONTY_H_
 #define MONTY_H_
-#define NUMBER_OF_INSTRUCTIONS 14
+#define NUMBER_OF_INSTRUCTIONS 16
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -73,6 +73,9 @@ void i_pstr(stack_t **stack, unsigned int line_number);
 void i_rotl(stack_t **stack, unsigned int line_number);
 void i_rotr(stack_t **stack, unsigned int line_number);
 
+/* stack2queue.c */
+void i_queue(stack_t **stack, unsigned int line_number);
+void i_stack(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H_ */
 

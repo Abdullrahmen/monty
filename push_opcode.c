@@ -119,11 +119,6 @@ void i_push(char *line, stack_t **stack, unsigned int line_number)
 		return;
 
 	n = get_pushed_number(line, line_number, *stack);
-	if (is_queue)
-	{
-		i_push_queue(stack, n);
-		return;
-	}
 	if (!*stack)
 	{
 		*stack = malloc(sizeof(stack_t));
@@ -133,6 +128,12 @@ void i_push(char *line, stack_t **stack, unsigned int line_number)
 		(*stack)->prev = NULL;
 		(*stack)->next = NULL;
 		(*stack)->n = n;
+		return;
+	}
+
+	if (is_queue)
+	{
+		i_push_queue(stack, n);
 		return;
 	}
 	iter = *stack;
