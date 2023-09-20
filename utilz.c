@@ -1,0 +1,114 @@
+#include "monty.h"
+
+void exit_failure(char *err_msg, stack_t *stack, char *line, instruction_t *instructions, FILE *file)
+{
+	static instruction_t *inst_ptr = NULL;
+	static char *line_p = NULL;
+	static FILE *file_p = NULL;
+
+	if (line)
+		line_p = line;
+	if (instructions)
+		inst_ptr = instructions;
+	if (file)
+		file_p = file;
+		
+	if (err_msg)
+	{
+		fprintf(stderr, "%s", err_msg);
+		free_stack(stack);
+		free_instructions(inst_ptr);
+		free(err_msg);
+		free(line_p);
+		fclose(file_p);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void init_instructions(instruction_t *instructions)
+{
+	instructions[0].opcode = strdup("pall");
+	instructions[0].f = i_pall;
+	instructions[1].opcode = strdup("pint");
+	instructions[1].f = i_pint;
+}
+
+void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, instruction_t *instructions)
+{
+	char *opcode = NULL, *err_msg = NULL;
+	int i = 0, j = 0;
+
+	if (!line || !instructions)
+		return;
+
+	while (*line == ' ')
+		++line;
+	if (*line == '#' || *line == '\n' || !*line)
+		return;
+
+	while (line[i] && line[i] != ' ')
+		++i;
+	opcode = malloc(sizeof(char) * (i + 1));
+	if (!opcode)
+		exit_failure(strdup("Error: malloc failed\n"), *stack, NULL, NULL, NULL);
+
+	opcode[i] = '\0';
+	for (j = 0; j < i; ++j)
+		opcode[j] = line[j];
+
+	if (!strcmp("push", opcode))
+	{
+		free(opcode);
+		i_push(&(line[i]), stack, line_number);
+		return;
+	}
+
+	for (j = 0; j < NUMBER_OF_INSTRUCTIONS; ++j)
+		if (!strcmp(instructions[j].opcode, opcode))
+		{
+			free(opcode);
+			(*(instructions[j].f))(stack, line_number);
+			return;
+		}
+
+	err_msg = strdup("L");
+	concat_int(&err_msg, line_number);
+	_strcat(&err_msg, ": unknown instruction ");
+	_strcat(&err_msg, opcode);
+	_strcat(&err_msg, "\n");
+	free(opcode);
+	exit_failure(err_msg, *stack, NULL, NULL, NULL);
+}
+
+/**
+* free_instructions - free instructions array contents
+* @instructions: the instructions array
+*/
+void free_instructions(instruction_t *instructions)
+{
+	int i = 0;
+
+	for (i = 0; i < NUMBER_OF_INSTRUCTIONS; ++i)
+		free(instructions[i].opcode);
+}
+
+/**
+* free_stack - free a linked list stack_t
+* @stack: the head of the linked list (stack)
+*/
+void free_stack(stack_t *stack)
+{
+	stack_t *iter = NULL;
+
+	if (!stack)
+		return;
+	iter = stack->next;
+	free(stack);
+	while (iter)
+	{
+		stack = iter;
+		iter = stack->next;
+		free(stack);
+	}
+}
+
