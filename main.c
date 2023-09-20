@@ -28,7 +28,6 @@ int main(int argc, char **argv)
 	if (!file_ptr)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[0]);
-		fclose(file_ptr);
 		return (EXIT_FAILURE);
 	}
 	init_instructions(instructions);
