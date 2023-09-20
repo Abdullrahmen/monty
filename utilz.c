@@ -31,6 +31,12 @@ void init_instructions(instruction_t *instructions)
 	instructions[0].f = i_pall;
 	instructions[1].opcode = strdup("pint");
 	instructions[1].f = i_pint;
+	instructions[2].opcode = strdup("pop");
+	instructions[2].f = i_pop;
+	instructions[3].opcode = strdup("swap");
+	instructions[3].f = i_swap;
+	instructions[4].opcode = strdup("add");
+	instructions[4].f = i_add;
 }
 
 void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, instruction_t *instructions)

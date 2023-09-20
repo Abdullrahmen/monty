@@ -1,6 +1,6 @@
 #ifndef MONTY_H_
 #define MONTY_H_
-#define NUMBER_OF_INSTRUCTIONS 2
+#define NUMBER_OF_INSTRUCTIONS 5
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -46,15 +46,17 @@ void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, ins
 void free_stack(stack_t *stack);
 void free_instructions(instruction_t *instructions);
 
-
+/* push_opcode.c */
+void i_push(char *line, stack_t **stack, unsigned int line_number);
 void _strcat(char **s1, char *s2);
 void concat_int(char **str, unsigned int line_number);
 
-
 /* instructions1.c */
-void i_push(char *line, stack_t **stack, unsigned int line_number);
 void i_pall(stack_t **stack, unsigned int line_number);
 void i_pint(stack_t **stack, unsigned int line_number);
+void i_pop(stack_t **stack, unsigned int line_number);
+void i_swap(stack_t **stack, unsigned int line_number);
+void i_add(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H_ */
 
