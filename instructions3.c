@@ -27,7 +27,6 @@ void i_pchar(stack_t **stack, unsigned int line_number)
 		concat_int(&err_msg, line_number);
 		_strcat(&err_msg, ": can't pchar, value out of range\n");
 		exit_failure(err_msg, *stack, NULL, NULL, NULL);
-	
 	}
 	printf("%c\n", iter->n);
 }

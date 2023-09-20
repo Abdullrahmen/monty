@@ -53,7 +53,7 @@ void init_instructions(instruction_t *instructions)
 	instructions[5].opcode = strdup("nop");
 	instructions[5].f = i_nop;
 	instructions[6].opcode = strdup("sub");
-	instructions[6].f = i_sub;	
+	instructions[6].f = i_sub;
 	instructions[7].opcode = strdup("div");
 	instructions[7].f = i_div;
 	instructions[8].opcode = strdup("mul");

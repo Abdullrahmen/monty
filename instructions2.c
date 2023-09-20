@@ -63,7 +63,6 @@ void i_div(stack_t **stack, unsigned int line_number)
 		concat_int(&err_msg, line_number);
 		_strcat(&err_msg, ": division by zero\n");
 		exit_failure(err_msg, *stack, NULL, NULL, NULL);
-	
 	}
 	tmp->n = tmp->n / tmp->next->n;
 	free(tmp->next);
@@ -123,7 +122,6 @@ void i_mod(stack_t **stack, unsigned int line_number)
 		concat_int(&err_msg, line_number);
 		_strcat(&err_msg, ": division by zero\n");
 		exit_failure(err_msg, *stack, NULL, NULL, NULL);
-	
 	}
 	tmp->n = tmp->n % tmp->next->n;
 	free(tmp->next);
