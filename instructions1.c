@@ -100,8 +100,17 @@ void i_swap(stack_t **stack, unsigned int line_number)
 	while (tmp->next->next)
 		tmp = tmp->next;
 	tmp2 = tmp->next;
-	tmp->prev->next = tmp2;
-	tmp2->prev = tmp->prev;
+
+	if (tmp->prev)
+	{
+		tmp->prev->next = tmp2;
+		tmp2->prev = tmp->prev;
+	}
+	else
+	{
+		*stack = tmp2;
+		tmp2->prev = NULL;
+	}
 	tmp2->next = tmp;
 	tmp->prev = tmp2;
 	tmp->next = NULL;
