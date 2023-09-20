@@ -38,9 +38,29 @@ void i_pint(stack_t **stack, unsigned int line_number)
 
 void i_pop(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
-
+	char *err_msg = NULL;
+	stack_t *iter = NULL;
+	
+	if (!*stack)
+	{
+		err_msg = strdup("L");
+		concat_int(&err_msg, line_number);
+		_strcat(&err_msg, ": can't pop an empty stack\n");
+		exit_failure(err_msg, *stack, NULL, NULL, NULL);
+	}
+	iter = *stack;
+	if (iter->next)
+	{
+		while (iter->next->next)
+			iter = iter->next;
+		free(iter->next);
+		iter->next = NULL;
+	}
+	else
+	{
+		free(iter);
+		*stack = NULL;
+	}
 }
 
 void i_swap(stack_t **stack, unsigned int line_number)

@@ -52,7 +52,7 @@ void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, ins
 	if (*line == '#' || *line == '\n' || !*line)
 		return;
 
-	while (line[i] && line[i] != ' ')
+	while (line[i] && line[i] != ' ' && line[i] != '\n')
 		++i;
 	opcode = malloc(sizeof(char) * (i + 1));
 	if (!opcode)
@@ -76,7 +76,6 @@ void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, ins
 			(*(instructions[j].f))(stack, line_number);
 			return;
 		}
-
 	err_msg = strdup("L");
 	concat_int(&err_msg, line_number);
 	_strcat(&err_msg, ": unknown instruction ");
