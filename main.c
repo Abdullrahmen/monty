@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	instruction_t instructions[NUMBER_OF_INSTRUCTIONS];
 	int line_number = 1;
 	size_t buffer_size = 0;
-	size_t line_size = 0;
+	ssize_t line_size = 0;
 
 	if (argc != 2)
 	{

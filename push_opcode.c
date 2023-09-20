@@ -3,7 +3,6 @@
 void _strcat(char **s1, char *s2)
 {
 	char *tmp = NULL;
-	size_t i = 0;
 
 	tmp = malloc(sizeof(char) * (strlen(*s1) + strlen(s2) + 1));
 	tmp[0] = '\0';

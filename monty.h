@@ -7,7 +7,7 @@
 
 extern int is_queue;
 
-/**** Stractures *****/
+/*-------------------------------- Structures ---------------------------------*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -38,7 +38,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/***** Functions *****/
+/*---------------------------------- Functions ------------------------------------*/
 /* utilz.c */
 void exit_failure(char *err_msg, stack_t *stack, char *line, instruction_t *instructions, FILE *file);
 void init_instructions(instruction_t *instructions);

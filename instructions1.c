@@ -4,6 +4,7 @@ void i_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *iter = NULL;
 
+	(void)line_number;
 	if (!*stack)
 		return;
 	iter = *stack;
@@ -36,10 +37,23 @@ void i_pint(stack_t **stack, unsigned int line_number)
 }
 
 void i_pop(stack_t **stack, unsigned int line_number)
-{}
+{
+	(void)stack;
+	(void)line_number;
+
+}
 
 void i_swap(stack_t **stack, unsigned int line_number)
-{}
+{
+	(void)stack;
+	(void)line_number;
+
+}
 
 void i_add(stack_t **stack, unsigned int line_number)
-{}
+{
+	(void)stack;
+	(void)line_number;
+}
+
+
