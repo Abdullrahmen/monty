@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+* _strcat - string concat
+* @s1: string 1
+* @s2: string 2
+*/
 void _strcat(char **s1, char *s2)
 {
 	char *tmp = NULL;
@@ -12,6 +17,11 @@ void _strcat(char **s1, char *s2)
 	*s1 = tmp;
 }
 
+/**
+* concat_int - concat string with unsigned int
+* @str: the string
+* @line_number: the unsigned int
+*/
 void concat_int(char **str, unsigned int line_number)
 {
 	char *final_str = NULL;
@@ -40,6 +50,13 @@ void concat_int(char **str, unsigned int line_number)
 	*str = final_str;
 }
 
+/**
+* get_pushed_number - get the pushed number of line
+* @line: line
+* @line_number: used in errors
+* @stack: stack
+* Return: the number
+*/
 int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 {
 	char *error_msg = NULL;
@@ -47,7 +64,7 @@ int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 
 	while (*line == ' ')
 		++line;
-	
+
 	if (*line == '-')
 	{
 		if (line[1] < '0' || line[1] > '9')
@@ -55,7 +72,7 @@ int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 	}
 	else if (*line < '0' || *line > '9')
 		is_fail = 1;
-	
+
 	if (is_fail)
 	{
 		error_msg = strdup("L");
@@ -67,6 +84,11 @@ int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 	return (atoi(line));
 }
 
+/**
+* i_push_queue - push instruction for the queue
+* @stack: stack
+* @n: the number
+*/
 void i_push_queue(stack_t **stack, int n)
 {
 	stack_t *head = NULL;
@@ -82,6 +104,12 @@ void i_push_queue(stack_t **stack, int n)
 	*stack = head;
 }
 
+/**
+* i_push - push instruction
+* @line: line
+* @stack: stack
+* @line_number: line number
+*/
 void i_push(char *line, stack_t **stack, unsigned int line_number)
 {
 	stack_t *iter = NULL, *prev = NULL;
@@ -104,7 +132,7 @@ void i_push(char *line, stack_t **stack, unsigned int line_number)
 						*stack, NULL, NULL, NULL);
 		(*stack)->prev = NULL;
 		(*stack)->next = NULL;
-		(*stack)->n = n;	
+		(*stack)->n = n;
 		return;
 	}
 	iter = *stack;
@@ -117,5 +145,4 @@ void i_push(char *line, stack_t **stack, unsigned int line_number)
 	iter->next = NULL;
 	iter->n = n;
 }
-
 

@@ -1,10 +1,19 @@
 #include "monty.h"
 
-void exit_failure(char *err_msg, stack_t *stack, char *line, instruction_t *instructions, FILE *file)
+/**
+* exit_failure - exit the program with EXIT_FAILURE stat
+* @err_msg: the error msg (if NULL won't exit the program)
+* @stack: stack
+* @line: line
+* @instructions: instructions
+* @file: file
+*/
+void exit_failure(char *err_msg, stack_t *stack, char *line,
+		instruction_t *instructions, FILE *file)
 {
-	static instruction_t *inst_ptr = NULL;
-	static char *line_p = NULL;
-	static FILE *file_p = NULL;
+	static instruction_t *inst_ptr;
+	static char *line_p;
+	static FILE *file_p;
 
 	if (line)
 		line_p = line;
@@ -12,7 +21,7 @@ void exit_failure(char *err_msg, stack_t *stack, char *line, instruction_t *inst
 		inst_ptr = instructions;
 	if (file)
 		file_p = file;
-		
+
 	if (err_msg)
 	{
 		fprintf(stderr, "%s", err_msg);
@@ -25,6 +34,10 @@ void exit_failure(char *err_msg, stack_t *stack, char *line, instruction_t *inst
 	}
 }
 
+/**
+* init_instructions - init the instructions array
+* @instructions: instructions
+*/
 void init_instructions(instruction_t *instructions)
 {
 	instructions[0].opcode = strdup("pall");
@@ -37,16 +50,25 @@ void init_instructions(instruction_t *instructions)
 	instructions[3].f = i_swap;
 	instructions[4].opcode = strdup("add");
 	instructions[4].f = i_add;
+	instructions[5].opcode = strdup("nop");
+	instructions[5].f = i_nop;
 }
 
-void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, instruction_t *instructions)
+/**
+* exec_opcode_func - execute the opcode corresponding function
+* @stack: stack
+* @line: line
+* @line_number: line number
+* @instructions: instructions
+*/
+void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number,
+						instruction_t *instructions)
 {
 	char *opcode = NULL, *err_msg = NULL;
 	int i = 0, j = 0;
 
 	if (!line || !instructions)
 		return;
-
 	while (*line == ' ')
 		++line;
 	if (*line == '#' || *line == '\n' || !*line)
@@ -57,7 +79,6 @@ void exec_opcode_func(stack_t **stack, char *line, unsigned int line_number, ins
 	opcode = malloc(sizeof(char) * (i + 1));
 	if (!opcode)
 		exit_failure(strdup("Error: malloc failed\n"), *stack, NULL, NULL, NULL);
-
 	opcode[i] = '\0';
 	for (j = 0; j < i; ++j)
 		opcode[j] = line[j];

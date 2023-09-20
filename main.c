@@ -2,6 +2,13 @@
 
 int is_queue = 0;
 
+
+/**
+* main - main function
+* @argc: argc
+* @argv: argv
+* Return: EXIT_FAILURE or 0
+*/
 int main(int argc, char **argv)
 {
 	char *line = NULL;
@@ -17,7 +24,6 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
-
 	file_ptr = fopen(argv[1], "r");
 	if (!file_ptr)
 	{
@@ -25,7 +31,6 @@ int main(int argc, char **argv)
 		fclose(file_ptr);
 		return (EXIT_FAILURE);
 	}
-
 	init_instructions(instructions);
 	while (1)
 	{
@@ -40,7 +45,6 @@ int main(int argc, char **argv)
 		line = NULL;
 		++line_number;
 	}
-
 	free_stack(stack);
 	free_instructions(instructions);
 	free(line);
