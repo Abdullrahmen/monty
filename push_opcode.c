@@ -67,7 +67,7 @@ int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 
 	if (*line == '-')
 	{
-		if (line[1] < '0' || line[1] > '9')
+		if (line[1] <= '0' || line[1] > '9')
 			is_fail = 1;
 	}
 	else if (*line < '0' || *line > '9')
