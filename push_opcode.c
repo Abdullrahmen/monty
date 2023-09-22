@@ -60,17 +60,19 @@ void concat_int(char **str, unsigned int line_number)
 int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 {
 	char *error_msg = NULL;
-	int is_fail = 0;
+	int is_fail = 0, i = 0;
 
 	while (*line == ' ')
 		++line;
 
 	if (*line == '-')
-	{
-		if (line[1] <= '0' || line[1] > '9')
-			is_fail = 1;
-	}
-	else if (*line < '0' || *line > '9')
+		++i;
+
+	while (line[i] != ' ' && line[i] != '\0' && line[i] != '\n'
+				&& line[i] >= '0' && line[i] <= '9')
+		++i;
+
+	if (line[i] != ' ' && line[i] != '\0' && line[i] != '\n')
 		is_fail = 1;
 
 	if (is_fail)
