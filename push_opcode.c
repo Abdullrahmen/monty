@@ -67,6 +67,8 @@ int get_pushed_number(char *line, unsigned int line_number, stack_t *stack)
 
 	if (*line == '-')
 		++i;
+	if (line[i] < '0' || line[i] > '9')
+		is_fail = 1;
 
 	while (line[i] != ' ' && line[i] != '\0' && line[i] != '\n'
 				&& line[i] >= '0' && line[i] <= '9')
